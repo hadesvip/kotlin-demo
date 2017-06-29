@@ -5,11 +5,11 @@ import com.domain.User
  */
 
 fun main(args: Array<String>) {
-    var user = User()
-    user.password = "123456"
-    user.userName = "admin"
-
-    println(user.userName)
-    println("hello,kotlin")
+//    var user = User()
+//    user.password = "123456"
+//    user.userName = "admin"
+//
+//    println(user.userName)
+//    println("hello,kotlin")
 }
 
