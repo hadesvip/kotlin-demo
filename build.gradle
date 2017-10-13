@@ -2,38 +2,24 @@ group 'com'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.3'
-    ext.spring_boot_version = '1.5.3.RELEASE'
+    ext.kotlin_version = '1.1.50'
+
     repositories {
-        jcenter()
+        mavenLocal()
+
+        maven {
+            name 'aliyun'
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+        mavenCentral()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
     }
 }
-//buildscript {
-//    ext.kotlin_version = '1.0.5'
-//
-//    repositories {
-//        mavenLocal()
-//        maven{
-//            url 'http://maven.aliyun.com/nexus/content/groups/public/'
-//        }
-//        mavenCentral()
-//    }
-//    dependencies {
-//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-//    }
-//}
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
-apply plugin: 'war'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'application'
-
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -41,16 +27,22 @@ targetCompatibility = 1.8
 repositories {
     mavenLocal()
     maven {
+        name 'aliyun'
         url 'http://maven.aliyun.com/nexus/content/groups/public/'
     }
     mavenCentral()
 }
 
-
-
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    //compile group: 'javax', name: 'javaee-api', version: '7.0'
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
