@@ -32,8 +32,88 @@ fun main(args: Array<String>) {
 
     println(languages)
 
+    println("---分割线---")
 
+    println(convert2Uppercase("hello,kotlin..."))
+
+    println(convert2Uppercase(22))
+
+    var array = intArrayOf(1, 2, 3, 4, 5)
+
+    for (item in array) {
+        println(item)
+    }
+    println("------------------")
+
+    //通过索引遍历
+    for (index: Int in array.indices) {
+        println("array[$index] = ${array[index]}")
+    }
+
+    println("--------------")
+    //同时遍历索引和值
+    for ((index, value) in array.withIndex()) {
+        println("array[$index]= $value")
+    }
+
+    println("----------------")
+    println(myPrint("hello"))
+    println(myPrint("kotlin"))
+    println(myPrint("hello,kotlin"))
+    println(myPrint("kotlin,hello"))
+    println(myPrint("test"))
+
+    println("----------------")
+    var param = 6
+    var result = when (param) {
+        1 -> {
+            println("param =1")
+            10
+        }
+        2 -> {
+            println("param =2")
+            20
+        }
+        3, 4, 5 -> {
+            println("param  =3 or param =4 or param =5")
+            30
+        }
+        in 6..10 -> {
+            println("param between 6 and 10")
+            40
+        }
+        else -> {
+            println("other value")
+            50
+        }
+    }
+    println(result)
 }
+
+
+fun myPrint(str: String): String {
+
+    return when (str) {
+        "hello" -> "HELLO"
+        "kotlin" -> "KOTLIN"
+        "hello,kotlin", "kotlin,hello" -> "HELLO,KOTLIN"
+        else -> "other input"
+    }
+}
+
+/**
+ * any是kotlin中的根,顶层类
+ */
+fun convert2Uppercase(str: Any): String? {
+
+    //如果是字符串类型
+    if (str is String) {
+        //str is String,str自动转成String 类型
+        return str.toUpperCase()
+    }
+    return null
+}
+
 
 //函数返回类型位于参数列表之后
 fun max(a: Int, b: Int): Int {
